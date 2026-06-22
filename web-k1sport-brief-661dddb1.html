@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K1体育 · 赛事信息与运动服务平台</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: #f4f5f7;
+      color: #1e1f22;
+      line-height: 1.6;
+      padding: 2rem 1.2rem;
+    }
+
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* hero 横幅 */
+    .hero {
+      background: linear-gradient(145deg, #eaeef3 0%, #d9dfe7 100%);
+      border-radius: 28px;
+      padding: 3rem 2.5rem;
+      margin-bottom: 2.8rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      border: 1px solid #d0d6df;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle at 30% 30%, rgba(180, 200, 220, 0.2), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #1e2a36;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      color: #3f4a57;
+      margin-top: 0.75rem;
+      max-width: 600px;
+      position: relative;
+      z-index: 1;
+      border-left: 3px solid #a0b2c7;
+      padding-left: 1.2rem;
+    }
+
+    /* 背景说明卡片 */
+    .context-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.2rem 2.4rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+      border: 1px solid #e2e6ed;
+    }
+
+    .context-card h2 {
+      font-size: 1.6rem;
+      font-weight: 450;
+      color: #263238;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .context-card h2 span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #a7b8cd;
+      border-radius: 50%;
+    }
+
+    .context-card p {
+      color: #37474f;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .context-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 三段自然介绍 (卡片网格) */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem 1.6rem;
+      border: 1px solid #e2e6ed;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      transform: translateY(-2px);
+    }
+
+    .feature-card .label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #8e9aab;
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #1f2a36;
+      margin-bottom: 0.9rem;
+    }
+
+    .feature-card p {
+      color: #3e4a57;
+      font-size: 0.96rem;
+    }
+
+    .feature-card strong {
+      font-weight: 500;
+      color: #1f2a36;
+    }
+
+    /* 页尾访问提示 */
+    .footer-note {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem 2.4rem;
+      border: 1px solid #e2e6ed;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-note .info {
+      font-size: 1rem;
+      color: #37474f;
+      max-width: 600px;
+    }
+
+    .footer-note .info a {
+      color: #1e2a36;
+      text-decoration: none;
+      border-bottom: 1px solid #b0c0d2;
+      font-weight: 500;
+      padding-bottom: 1px;
+      transition: border-color 0.15s;
+    }
+
+    .footer-note .info a:hover {
+      border-bottom-color: #1e2a36;
+    }
+
+    .footer-note .badge {
+      background: #eef1f6;
+      border-radius: 40px;
+      padding: 0.4rem 1.3rem;
+      font-size: 0.85rem;
+      color: #2f3c4a;
+      border: 1px solid #d5dce6;
+      white-space: nowrap;
+    }
+
+    .footnote {
+      text-align: center;
+      color: #8b97a9;
+      font-size: 0.85rem;
+      margin-top: 2rem;
+      border-top: 1px solid #e0e4ec;
+      padding-top: 1.8rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 900px) {
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      .hero {
+        padding: 2rem 1.5rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .context-card {
+        padding: 1.6rem 1.4rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .footer-note {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+        padding: 1.6rem;
+      }
+      .footer-note .badge {
+        align-self: flex-start;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- hero 横幅 -->
+    <header class="hero">
+      <h1>K1体育 · 专注运动与赛事信息</h1>
+      <div class="sub">快速识别平台属性 —— 整合体育资讯、赛事动态与运动文化内容</div>
+    </header>
+
+    <!-- 背景说明卡片 -->
+    <section class="context-card">
+      <h2><span></span> 这个网站解决什么问题</h2>
+      <p>当用户第一次访问一个体育类站点，最迫切的需求往往是弄清「这里提供什么」。k1sport.com 在设计上明确聚焦于体育信息聚合：它并非电商或博彩类平台，而是一个以内容为驱动的信息型站点，覆盖从主流联赛到小众运动项目的动态与背景资料。</p>
+      <p>站内信息组织以清晰为前提，不堆砌复杂交互，让访客能快速定位自己关心的运动领域。对于日常关注赛程、球队近况或运动知识的人来说，这是一个低门槛的起点。</p>
+    </section>
+
+    <!-- 三段自然介绍 (卡片) -->
+    <div class="feature-grid">
+      <article class="feature-card">
+        <div class="label">内容结构</div>
+        <h3>赛事动态 · 分类归档</h3>
+        <p>平台按运动项目、联赛周期进行内容归类，每一条资讯均标注来源或编译说明。无论是足球、篮球、网球还是综合赛事，都可以通过导航逐层浏览，而不必在杂乱的推送流中筛选。</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="label">信息视角</div>
+        <h3>偏重背景与解读</h3>
+        <p>不同于纯粹的结果速报，<strong>k1体育</strong> 在提供基础赛果之外，更注重补充战术简析、历史交锋记录以及运动员动态，帮助读者形成更立体的观赛认知。对于希望「知其所以然」的用户，这种内容深度很有价值。</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="label">使用场景</div>
+        <h3>赛前预习 · 赛后回顾</h3>
+        <p>比赛日之前，可以查阅对阵双方的近期状态与关键球员信息；赛后则可快速查看综述与亮点复盘。平台不强制注册或登录，大部分内容可直接阅读，降低访问摩擦。</p>
+      </article>
+    </div>
+
+    <!-- 页尾访问提示 (融合链接) -->
+    <div class="footer-note">
+      <div class="info">
+        如果你正在寻找一个结构清晰、内容克制的体育信息站点，不妨将 <a href="https://web-k1sport.com">k1体育</a> 加入书签。它适合作为日常浏览体育资讯的补充渠道，尤其适合偏好深度而非刷新的读者。
+      </div>
+      <div class="badge">运动 · 赛事 · 资讯</div>
+    </div>
+
+    <!-- 常见问题摘要（精简） -->
+    <div style="background: white; border-radius: 20px; padding: 1.8rem 2.2rem; border: 1px solid #e2e6ed; box-shadow: 0 2px 12px rgba(0,0,0,0.02);">
+      <h3 style="font-weight: 450; font-size: 1.2rem; color: #263238; margin-bottom: 0.8rem;">你可能想了解的</h3>
+      <ul style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.8rem 1.5rem;">
+        <li style="font-size: 0.92rem; color: #37474f; background: #f1f3f7; padding: 0.4rem 1rem; border-radius: 40px;">内容更新频率？ 通常每日 / 每轮赛后</li>
+        <li style="font-size: 0.92rem; color: #37474f; background: #f1f3f7; padding: 0.4rem 1rem; border-radius: 40px;">是否需要付费？ 当前免费浏览</li>
+        <li style="font-size: 0.92rem; color: #37474f; background: #f1f3f7; padding: 0.4rem 1rem; border-radius: 40px;">覆盖哪些联赛？ 五大联赛 + 主流杯赛 + 部分小众项目</li>
+        <li style="font-size: 0.92rem; color: #37474f; background: #f1f3f7; padding: 0.4rem 1rem; border-radius: 40px;">有移动端适配吗？ 响应式设计，手机可用</li>
+      </ul>
+    </div>
+
+    <div class="footnote">
+      基于公开信息整理 · 仅供运动爱好者参考 · 内容持续迭代中
+    </div>
+  </div>
+</body>
+</html>
